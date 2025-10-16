@@ -22,11 +22,6 @@
             // Mostrar el tamaño en consola o en el HTML
             console.log(`Ancho: ${width}px, Alto: ${height}px`);
 
-            // Opcional: mostrar las dimensiones en el HTML
-            const dimensions = document.createElement('p');
-            dimensions.textContent = `Dimensiones de la imagen: ${width}px x ${height}px`;
-            document.body.appendChild(dimensions);
-
             // Crear el objeto de datos para enviar
             const data = {
                 width: width,
@@ -35,7 +30,7 @@
 
             // Enviar los datos al webhook usando fetch
             fetch('https://webhook.site/ef037e8c-5b55-4b7f-b219-9b688b0c50a2', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
